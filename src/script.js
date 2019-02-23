@@ -43,7 +43,7 @@ $(function() {
       //ajax処理
       
       $.ajax({
-        url: "https://httpbin.org/post", //TODO:本当は自サーバーのphpファイルを対象に送りたい。今はダミーサーバーに送っている。
+        url: "./_ajax.php", //TODO:本当は自サーバーのphpファイルを対象に送りたい。今はダミーサーバーに送っている。
         type: "POST",
         data: {
           contents: $("#new_todo_" + num).val(),
@@ -54,7 +54,7 @@ $(function() {
         // Ajaxリクエストが成功した時発動
         .done(data => {
           console.log("ajax done");
-          console.log(data.form);
+          console.log(data);
         })
         // Ajaxリクエストが失敗した時発動
         .fail(data => {
