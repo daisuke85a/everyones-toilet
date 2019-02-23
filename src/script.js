@@ -25,6 +25,9 @@ $(function() {
         'px;"></form>'
     );
 
+    var offsetY = e.offsetY;
+    var offsetX = e.offsetX;
+
     $("#new_todo_" + num).focus();
 
     //入力フォームでEnterが押されたら呼ばれる関数
@@ -38,17 +41,32 @@ $(function() {
       console.log($("#new_todo_" + num).val());
 
       //ajax処理
-      //TODO:本当は.serialize()を使ってフォームのデータを送りたいけどできない。今はvalの値で送っている。
-      $.post(
-        "https://httpbin.org/post", //TODO:本当は自分のサーバーのphpファイルに向けて送りたい。
-        $("#new_todo_" + num).val()
-      ).done(function(data) {
-        console.log(data.form);
-      });
+      
+      $.ajax({
+        url: "https://httpbin.org/post", //TODO:本当は自サーバーのphpファイルを対象に送りたい。今はダミーサーバーに送っている。
+        type: "POST",
+        data: {
+          contents: $("#new_todo_" + num).val(),
+          x: offsetX,
+          y: offsetY
+        }
+      })
+        // Ajaxリクエストが成功した時発動
+        .done(data => {
+          console.log("ajax done");
+          console.log(data.form);
+        })
+        // Ajaxリクエストが失敗した時発動
+        .fail(data => {
+          console.log("ajax fail");
+        })
+        // Ajaxリクエストが成功・失敗どちらでも発動
+        .always(data => {
+
+        });
 
       //画面のリフレッシュを防ぐためにreturn falseする
       return false;
     });
-
   });
 });
