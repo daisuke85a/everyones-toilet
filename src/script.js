@@ -29,19 +29,26 @@ $(function() {
 
     //入力フォームでEnterが押されたら呼ばれる関数
     $("#new_todo_form_" + num).on("submit", function(e) {
+      event.preventDefault(); //submitが実行されると、画面が必ず更新されるというブラウザの仕様をキャンセルする
+
       console.log("submit #new_todo_form_" + num);
       //ここにajaxを入れてphpにデータを渡す予定
+      console.log($("#new_todo_form_" + num).val());
+
+      console.log($("#new_todo_" + num).val());
 
       //ajax処理
-      $.post( 'https://httpbin.org/post', 'name=太郎' )
- 
-      .done(function( data ) {
-       
-          console.log( data.form );
-       
-      })
+      //TODO:本当は.serialize()を使ってフォームのデータを送りたいけどできない。今はvalの値で送っている。
+      $.post(
+        "https://httpbin.org/post",
+        $("#new_todo_" + num).val()
+      ).done(function(data) {
+        console.log(data.form);
+      });
+
       //画面のリフレッシュを防ぐためにreturn falseする
       return false;
     });
+
   });
 });
