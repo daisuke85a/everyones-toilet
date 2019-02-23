@@ -31,10 +31,17 @@ $(function() {
     $("#new_todo_form_" + num).on("submit", function(e) {
       console.log("submit #new_todo_form_" + num);
       //ここにajaxを入れてphpにデータを渡す予定
-      
+
+      //ajax処理
+      $.post( 'https://httpbin.org/post', 'name=太郎' )
+ 
+      .done(function( data ) {
+       
+          console.log( data.form );
+       
+      })
       //画面のリフレッシュを防ぐためにreturn falseする
       return false;
     });
-
   });
 });
