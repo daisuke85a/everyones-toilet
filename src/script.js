@@ -40,7 +40,7 @@ $(function() {
       //ajax処理
       //TODO:本当は.serialize()を使ってフォームのデータを送りたいけどできない。今はvalの値で送っている。
       $.post(
-        "https://httpbin.org/post",
+        "https://httpbin.org/post", //TODO:本当は自分のサーバーのphpファイルに向けて送りたい。
         $("#new_todo_" + num).val()
       ).done(function(data) {
         console.log(data.form);
