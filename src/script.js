@@ -9,11 +9,8 @@ $(function() {
     console.log("offset=" + e.offsetX + "," + e.offsetY);
     console.log("scrollLeft()=" + $(".room-wall").scrollLeft() );
 
-    //動的にUIを追加
-    // divの子要素の最後に追加
-    //$('.room-wall').append('<p class="add" style="position: absolute; top: ' + e.offsetY +'px; left: ' + e.offsetX + 'px;">にゃーん</p>');
-
     var offsetY = e.clientY; 
+    //room-wallは横スクロール対応しているため、scrollLeftを足している。（縦スクロールは対応していない。）
     var offsetX = e.clientX + $(".room-wall").scrollLeft();
 
     console.log("offsetY=" + offsetY);
@@ -42,15 +39,13 @@ $(function() {
       event.preventDefault(); //submitが実行されると、画面が必ず更新されるというブラウザの仕様をキャンセルする
 
       console.log("submit #new_todo_form_" + num);
-      //ここにajaxを入れてphpにデータを渡す予定
       console.log($("#new_todo_form_" + num).val());
-
       console.log($("#new_todo_" + num).val());
 
       //ajax処理
       
       $.ajax({
-        url: "./_ajax.php", //TODO:本当は自サーバーのphpファイルを対象に送りたい。今はダミーサーバーに送っている。
+        url: "./_ajax.php", 
         type: "GET",
         data: {
           contents: $("#new_todo_" + num).val(),
@@ -63,6 +58,7 @@ $(function() {
           console.log("ajax done");
           console.log(data);
 
+          //入力された落書きをp要素で追加。（勉強がてら、一部で生javasriptで書いている。設計上の意味はない。）
           var p = document.createElement('p');
           p.style= 'position: absolute; top: ' + offsetY + 'px; left: ' + offsetX + 'px;';
           p.textContent = $("#new_todo_" + num).val();
@@ -75,6 +71,7 @@ $(function() {
         })
         // Ajaxリクエストが成功・失敗どちらでも発動
         .always(data => {
+          //落書き入力フォームを削除
           document.getElementById("new_todo_form_" + num ).remove();
         });
 
