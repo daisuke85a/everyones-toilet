@@ -7,10 +7,17 @@ $(function() {
     console.log("page=" + e.pageX + "," + e.pageY);
     console.log("client=" + e.clientX + "," + e.clientY);
     console.log("offset=" + e.offsetX + "," + e.offsetY);
+    console.log("scrollLeft()=" + $(".room-wall").scrollLeft() );
 
     //動的にUIを追加
     // divの子要素の最後に追加
     //$('.room-wall').append('<p class="add" style="position: absolute; top: ' + e.offsetY +'px; left: ' + e.offsetX + 'px;">にゃーん</p>');
+
+    var offsetY = e.clientY; 
+    var offsetX = e.clientX + $(".room-wall").scrollLeft();
+
+    console.log("offsetY=" + offsetY);
+    console.log("offsetX=" + offsetX);
 
     num++;
     $(".room-wall").append(
@@ -19,14 +26,14 @@ $(function() {
         '"><input type="text" id="new_todo_' +
         num +
         '" placeholder="落書きできるよ〜" style="position: absolute; top: ' +
-        e.offsetY +
+        offsetY +
         "px; left: " +
-        e.offsetX +
+        offsetX  +
         'px;"></form>'
     );
 
-    var offsetY = e.offsetY;
-    var offsetX = e.offsetX;
+    console.log(e);
+
 
     $("#new_todo_" + num).focus();
 
