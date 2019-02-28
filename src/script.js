@@ -16,6 +16,14 @@ $(function() {
     console.log("offsetY=" + offsetY);
     console.log("offsetX=" + offsetX);
 
+    //一つ前の落書きフォームが残っていたら削除する落書き入力フォームを削除
+    if(document.getElementById("new_todo_form_" + num ) != null){
+      document.getElementById("new_todo_form_" + num ).remove();
+    }
+    if(document.getElementById("fukidashi") != null){
+      document.getElementById("fukidashi").remove();
+    }
+
     num++;
     $(".room-wall").append(
       '<form action"" id="new_todo_form_' +
