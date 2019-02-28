@@ -9,9 +9,9 @@ $(function() {
     console.log("offset=" + e.offsetX + "," + e.offsetY);
     console.log("scrollLeft()=" + $(".room-wall").scrollLeft() );
 
-    var offsetY = e.clientY; 
+    var offsetY = e.offsetY; 
     //room-wallは横スクロール対応しているため、scrollLeftを足している。（縦スクロールは対応していない。）
-    var offsetX = e.clientX + $(".room-wall").scrollLeft();
+    var offsetX = e.offsetX + $(".room-wall").scrollLeft();
 
     console.log("offsetY=" + offsetY);
     console.log("offsetX=" + offsetX);
