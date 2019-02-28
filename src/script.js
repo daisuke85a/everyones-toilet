@@ -23,11 +23,20 @@ $(function() {
         '"><input type="text" id="new_todo_' +
         num +
         '" placeholder="落書きできるよ〜" style="position: absolute; top: ' +
-        offsetY +
+        (Number(offsetY) - 40 ) +
         "px; left: " +
-        offsetX  +
+        (Number(offsetX - 20 ))  +
         'px;"></form>'
     );
+
+    $(".room-wall").append(
+      '<div id="fukidashi"; style="position: absolute; top: ' +
+        (Number(offsetY) - 20) +
+        "px; left: " +
+        (Number(offsetX - 20 ))  +
+        'px;"></form>'
+    );
+
 
     console.log(e);
 
@@ -73,6 +82,7 @@ $(function() {
         .always(data => {
           //落書き入力フォームを削除
           document.getElementById("new_todo_form_" + num ).remove();
+          document.getElementById("fukidashi").remove();
         });
 
       //画面のリフレッシュを防ぐためにreturn falseする

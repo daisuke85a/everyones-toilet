@@ -81,6 +81,20 @@ main {
   white-space:nowrap;
   overflow: scroll;
 }
+
+#fukidashi{
+  right: 0;
+  bottom: -20px;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  margin: 0;
+  border-style: solid;
+  border-color: #d3daf7 transparent transparent transparent;
+  border-width: 20px 20px 0 20px;
+}
+
+
 .room-floor {
   position: relative;
   width: 100%;
