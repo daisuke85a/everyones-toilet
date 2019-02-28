@@ -62,6 +62,12 @@ $(function() {
         .done(data => {
           console.log("ajax done");
           console.log(data);
+
+          var p = document.createElement('p');
+          p.style= 'position: absolute; top: ' + offsetY + 'px; left: ' + offsetX + 'px;';
+          p.textContent = $("#new_todo_" + num).val();
+          document.getElementsByClassName("room-wall")[0].appendChild(p);
+
         })
         // Ajaxリクエストが失敗した時発動
         .fail(data => {
@@ -69,7 +75,7 @@ $(function() {
         })
         // Ajaxリクエストが成功・失敗どちらでも発動
         .always(data => {
-
+          document.getElementById("new_todo_form_" + num ).remove();
         });
 
       //画面のリフレッシュを防ぐためにreturn falseする
