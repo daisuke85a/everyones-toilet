@@ -44,7 +44,7 @@ $(function() {
       
       $.ajax({
         url: "./_ajax.php", //TODO:本当は自サーバーのphpファイルを対象に送りたい。今はダミーサーバーに送っている。
-        type: "POST",
+        type: "GET",
         data: {
           contents: $("#new_todo_" + num).val(),
           x: offsetX,

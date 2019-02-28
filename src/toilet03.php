@@ -16,10 +16,9 @@
         うううううううううううううううううううええええええええええええええええええ
         おおおおおおおおおおおおおおおおおおおお
         <?php
+            require_once __DIR__ . '/config.php';
 
-            //TODO:MAMP環境から本番環境に書き換え必要
-            //    $pdo = new PDO('mysql:dbname=everyone-toilet;host=localhost;charset=utf8', 'root', 'root');
-            $pdo = new PDO('mysql:dbname=everyone-toilet;host=localhost;charset=utf8', 'root', 'root');
+            $pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
             $stmt = $pdo->query("SELECT * FROM graffitis ");
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
