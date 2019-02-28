@@ -11,11 +11,20 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+@font-face{ 
+	font-family: 'kawaii-tegaki-font'; 
+	src: url('font/KTEGAKI.ttf') format('truetype'); 
+	font-weight: normal; 
+	font-style: normal;
+}
+
 body {
   background: #aaa;
   font-size: 15px;
   line-height: 1.2;
   text-align: center;
+  font-family: 'kawaii-tegaki-font';
 }
 img {
   max-width: 100%;
