@@ -24,7 +24,7 @@ body {
   font-size: 15px;
   line-height: 1.2;
   text-align: center;
-  font-family: 'kawaii-tegaki-font';
+  font-family: 'kawaii-tegaki-font', sans-serif;
 }
 img {
   max-width: 100%;
@@ -83,17 +83,31 @@ main {
 }
 
 #fukidashi{
-  right: 0;
-  bottom: -20px;
-  left: 0;
-  width: 0px;
-  height: 0px;
-  margin: 0;
-  border-style: solid;
-  border-color: #d3daf7 transparent transparent transparent;
-  border-width: 20px 20px 0 20px;
+  position: relative;
+  padding: 0 8px;
+  height: 30px;
+  background: #f7dee6;
+  border-radius: 4px;
+  line-height: 30px;
 }
 
+#fukidashi span {
+  position: absolute;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  display: block;
+  background: #f7dee6;
+  transform: rotate(45deg);
+}
+
+input[type="text"] {
+  position: relative;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.5);
+  outline: none;
+  padding: 4px 8px;
+}
 
 .room-floor {
   position: relative;
@@ -105,13 +119,20 @@ main {
   top: -20px;
   margin-left: -138px;
 }
-.room-floor-btn {
+.room-floor-btn-area {
   position: absolute;
   right: 12px;
   bottom:12px;
+}
+.room-floor-btn-area a {
+  display: block;
+  margin-bottom: 8px;
   padding: 12px;
   border: 4px solid #191919;
   background: #fff;
+}
+.room-floor-btn-area a:last-child {
+  margin-bottom: 0px;
 }
 
 footer {
