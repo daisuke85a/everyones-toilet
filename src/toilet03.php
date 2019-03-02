@@ -38,7 +38,10 @@
       </section>
       <section class="room-floor">
         <img src="images/toilet03.png" alt="3番目の個室のトイレ">
-        <a class="room-floor-btn" href="index.html">トイレから出る</a>
+        <div class="room-floor-btn-area">
+          <a href="readme.html">トイレの使い方</a>
+          <a href="index.html">トイレから出る</a>
+        </div>
       </section>
     </main>
     <footer>
