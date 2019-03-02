@@ -24,7 +24,7 @@ body {
   font-size: 15px;
   line-height: 1.2;
   text-align: center;
-  font-family: 'kawaii-tegaki-font';
+  font-family: 'kawaii-tegaki-font', sans-serif;
 }
 img {
   max-width: 100%;
