@@ -30,7 +30,7 @@ $(function() {
         num +
         '"><input type="text" id="new_todo_' +
         num +
-        '" placeholder="落書きできるよ〜" style="position: absolute; top: ' +
+        '" style="position: absolute; top: ' +
         (Number(offsetY) - 0 ) +
         "px; left: " +
         (Number(offsetX - 8 ))  +
@@ -42,7 +42,7 @@ $(function() {
         (Number(offsetY) - 40) +
         "px; left: " +
         (Number(offsetX - 8 ))  +
-        'px;"></form>'
+        'px;">落書きできるよ〜<span></span></form>'
     );
 
 
