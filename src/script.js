@@ -31,17 +31,17 @@ $(function() {
         '"><input type="text" id="new_todo_' +
         num +
         '" placeholder="落書きできるよ〜" style="position: absolute; top: ' +
-        (Number(offsetY) - 40 ) +
+        (Number(offsetY) - 0 ) +
         "px; left: " +
-        (Number(offsetX - 20 ))  +
+        (Number(offsetX - 8 ))  +
         'px;"></form>'
     );
 
     $(".room-wall").append(
       '<div id="fukidashi"; style="position: absolute; top: ' +
-        (Number(offsetY) - 20) +
+        (Number(offsetY) - 40) +
         "px; left: " +
-        (Number(offsetX - 20 ))  +
+        (Number(offsetX - 8 ))  +
         'px;"></form>'
     );
 
