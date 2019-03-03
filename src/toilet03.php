@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113487092-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113487092-5');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -19,22 +28,22 @@
     <main class="room">
       <section class="room-wall">
         <?php
-            require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/config.php';
 
-            $pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
-            $stmt = $pdo->query("SELECT * FROM graffitis ");
+$pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
+$stmt = $pdo->query("SELECT * FROM graffitis ");
 
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-                $contents = $row["contents"];
-                $x = $row["x"];
-                $y = $row["y"];
-                
-                echo '<p style="position: absolute; top: ' . $y . 'px; left: ' . $x . 'px;">' .  $contents . '</p>';
+    $contents = $row["contents"];
+    $x = $row["x"];
+    $y = $row["y"];
 
-            }
+    echo '<p style="position: absolute; top: ' . $y . 'px; left: ' . $x . 'px;">' . $contents . '</p>';
 
-          ?>
+}
+
+?>
       </section>
       <section class="room-floor">
         <img src="images/toilet03.png" alt="3番目の個室のトイレ">
