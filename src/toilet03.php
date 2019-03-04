@@ -39,7 +39,6 @@
       <section class="room-floor">
         <img src="images/toilet03.png" alt="3番目の個室のトイレ">
         <div class="room-floor-btn-area">
-          <a href="readme.html">トイレの使い方</a>
           <a href="index.html">トイレから出る</a>
         </div>
       </section>
