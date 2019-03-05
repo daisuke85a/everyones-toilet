@@ -46,7 +46,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
       </section>
       <section class="room-floor">
-        <img src="images/toilet03.png" alt="3番目の個室のトイレ">
+        <img class="paper" src="images/paper03.png" alt="2番目の個室のペーパーホルダー">
+        <img class="toilet" src="images/toilet03.png" alt="2番目の個室のトイレ">
         <div class="room-floor-btn-area">
           <a href="index.html">トイレから出る</a>
         </div>
