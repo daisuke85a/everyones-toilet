@@ -69,7 +69,8 @@ main {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-.everyones-toilet li a:hover {
+.everyones-toilet li a:hover,
+.everyones-toilet li a:focus {
   background-image: url(images/toilet-open.png);
 }
 /* 個室 */
