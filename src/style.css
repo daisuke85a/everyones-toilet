@@ -69,7 +69,8 @@ main {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-.everyones-toilet li a:hover {
+.everyones-toilet li a:hover,
+.everyones-toilet li a:focus {
   background-image: url(images/toilet-open.png);
 }
 /* 個室 */
@@ -113,12 +114,21 @@ input[type="text"] {
   position: relative;
   width: 100%;
 }
-.room-floor img {
+
+.room-floor .toilet {
   position: absolute;
   left:50%;
   top: -20px;
   margin-left: -138px;
 }
+
+.room-floor .paper {
+  position: absolute;
+  left:50%;
+  top: -80px;
+  margin-left: -100px;
+}
+
 .room-floor-btn-area {
   position: absolute;
   right: 12px;
