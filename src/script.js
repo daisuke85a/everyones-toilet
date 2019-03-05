@@ -9,7 +9,8 @@ $(function() {
     console.log("offset=" + e.offsetX + "," + e.offsetY);
     console.log("scrollLeft()=" + $(".room-wall").scrollLeft() );
 
-    var offsetY = e.offsetY; 
+    //スマホ用に縦スクロール対応する
+    var offsetY = e.offsetY + $(".room-wall").scrollTop(); 
     //room-wallは横スクロール対応しているため、scrollLeftを足している。（縦スクロールは対応していない。）
     var offsetX = e.offsetX + $(".room-wall").scrollLeft();
 
