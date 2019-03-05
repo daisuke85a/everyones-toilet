@@ -49,6 +49,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <img class="paper" src="images/paper03.png" alt="3番目の個室のペーパーホルダー">
         <img class="toilet" src="images/toilet03.png" alt="3番目の個室のトイレ">
         <div class="room-floor-btn-area">
+          <a class="sns-btn active-btn" href="http://twitter.com/intent/tweet?text=3番目の個室に入りました%0a&hashtags=みんなのトイレ&url=https://everyones-toilet.tokyo" onclick="window.open(this.href, 'tweetwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;">
+            トイレ報告
+          </a>
           <a href="index.html">トイレから出る</a>
         </div>
       </section>
