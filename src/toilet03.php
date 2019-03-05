@@ -31,7 +31,7 @@
 require_once __DIR__ . '/config.php';
 
 $pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
-$stmt = $pdo->query("SELECT * FROM graffitis ");
+$stmt = $pdo->query("SELECT * FROM graffitis WHERE ROOM = 3");
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
