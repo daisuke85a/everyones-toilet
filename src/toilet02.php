@@ -31,7 +31,7 @@
 require_once __DIR__ . '/config.php';
 
 $pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
-$stmt = $pdo->query("SELECT * FROM graffitis WHERE ROOM = 3");
+$stmt = $pdo->query("SELECT * FROM graffitis WHERE ROOM = 2");
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
@@ -46,8 +46,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
       </section>
       <section class="room-floor">
-        <img class="paper" src="images/paper03.png" alt="3番目の個室のペーパーホルダー">
-        <img class="toilet" src="images/toilet03.png" alt="3番目の個室のトイレ">
+        <img src="images/toilet03.png" alt="3番目の個室のトイレ">
         <div class="room-floor-btn-area">
           <a href="index.html">トイレから出る</a>
         </div>
