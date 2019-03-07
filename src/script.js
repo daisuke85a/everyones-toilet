@@ -1,3 +1,28 @@
+
+//aタグ要素のclickをすべて無効化する
+var list = document.getElementsByTagName('a');
+
+for(var i = 0,len =list.length; i<len; i++){
+  console.log(list.item(i).href);
+  list.item(i).disabled;
+  list.item(i).addEventListener('click',function(){
+    console.log("click");
+    event.preventDefault(); //イベントを無効化する
+  });
+
+  // //以下コードでhoverを無効化したいが、できなかった。
+  // list.item(i).addEventListener('mouseover', function(){
+  //   console.log("mouseover");
+  //   event.preventDefault(); //イベントを無効化する
+  // });
+
+  // list.item(i).addEventListener('mouseenter', function(){
+  //   console.log("mouseenter");
+  //   event.preventDefault(); //イベントを無効化する
+  // });
+
+}
+
 $(function() {
   console.log("hello");
   var num = 0;
