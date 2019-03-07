@@ -27,7 +27,7 @@ $(function() {
 
     num++;
     $(".room-wall").append(
-      '<form action"" id="new_todo_form_' +
+      '<form action="" id="new_todo_form_' +
         num +
         '"><input type="text" id="new_todo_' +
         num +
