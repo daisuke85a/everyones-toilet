@@ -21,6 +21,27 @@ function aTagClickChangeValid(valid) {
   }
 }
 
+function confirmCleaningWithAjax(){
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4 ){ //通信が完了した時
+      if (xhr.status === 200 ){
+
+        console.log(xhr.responseText);
+      } else { //通信が失敗した時
+
+      }
+    }else{ //通信が完了する前
+
+    }
+  };
+
+  //サーバーとの非同期通信を開始
+  xhr.open('GET', '_ajax.php?request=confirmCleaningWithAjax', true);
+  xhr.send(null);
+}
+
 $(function() {
   console.log("hello");
   var num = 0;
