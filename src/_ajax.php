@@ -3,7 +3,16 @@
 require_once __DIR__ . '/config.php';
 
 if ($_GET['request'] === 'confirmCleaningWithAjax') {
-    echo "confirmCleaningWithAjax";
+
+    if (!empty($_COOKIE["cleaningdatetime"])) {
+        $beforeCleanDateTime = $_COOKIE["cleaningdatetime"];
+        echo $beforeCleanDateTime;
+    }else{
+        echo "";
+    }
+
+    setcookie("cleaningdatetime", time(), time() + 24 * 3600 * 365); //現在時刻を1年保存する    
+    //setcookie("cleaningdatetime", time(), time() -1 ); //クッキーを削除する(テスト用コード)
 
 } else {
     $contents = $_GET['contents'];

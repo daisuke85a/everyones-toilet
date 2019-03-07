@@ -1,6 +1,6 @@
-function invalidEvent(){
+function invalidEvent() {
   console.log("click invalid");
-  event.preventDefault(); //イベントを無効化する  
+  event.preventDefault(); //イベントを無効化する
 }
 
 //aTagの有効/無効を切替する
@@ -21,24 +21,28 @@ function aTagClickChangeValid(valid) {
   }
 }
 
-function confirmCleaningWithAjax(){
-
+function confirmCleaningWithAjax() {
   var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState === 4 ){ //通信が完了した時
-      if (xhr.status === 200 ){
-
-        console.log(xhr.responseText);
-      } else { //通信が失敗した時
-
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      //通信が完了した時
+      if (xhr.status === 200) {
+        if (xhr.responseText != "") {
+          console.log(xhr.responseText);
+        }
+        else{
+          console.log("クッキーが未設定です");
+        }
+      } else {
+        //通信が失敗した時
       }
-    }else{ //通信が完了する前
-
+    } else {
+      //通信が完了する前
     }
   };
 
   //サーバーとの非同期通信を開始
-  xhr.open('GET', '_ajax.php?request=confirmCleaningWithAjax', true);
+  xhr.open("GET", "_ajax.php?request=confirmCleaningWithAjax", true);
   xhr.send(null);
 }
 
