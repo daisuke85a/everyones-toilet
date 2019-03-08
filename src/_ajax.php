@@ -4,14 +4,39 @@ require_once __DIR__ . '/config.php';
 
 if ($_GET['request'] === 'confirmCleaningWithAjax') {
 
+    try {
+        $pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $pdo->query('SELECT * from cleans WHERE kind = "last"');
+        $lastCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
+        echo $lastCleanTime;
+
+        $stmt = $pdo->query('SELECT * from cleans WHERE kind = "next"');
+        $nextCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
+        echo $nextCleanTime;
+
+
+    } catch (PDOException $e) {
+        $str = $e->getMessage();
+        $result = nl2br($str);
+        echo $result;
+        die();
+    }
+
+    // 接続を閉じる
+    $pdo = null;
+
+    //ユーザーが１回でも清掃したことがある場合
     if (!empty($_COOKIE["cleaningdatetime"])) {
         $beforeCleanDateTime = $_COOKIE["cleaningdatetime"];
         echo $beforeCleanDateTime;
-    }else{
+    //ユーザーが未清掃の場合
+    } else {
         echo "";
     }
 
-    setcookie("cleaningdatetime", time(), time() + 24 * 3600 * 365); //現在時刻を1年保存する    
+    setcookie("cleaningdatetime", time(), time() + 24 * 3600 * 365); //現在時刻を1年保存する
     //setcookie("cleaningdatetime", time(), time() -1 ); //クッキーを削除する(テスト用コード)
 
 } else {
@@ -25,8 +50,6 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
     }
 
     try {
-        //TODO:MAMP環境から本番環境に書き換え必要
-        //    $pdo = new PDO('mysql:dbname=everyone-toilet;host=localhost;charset=utf8', 'root', 'root');
         $pdo = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
