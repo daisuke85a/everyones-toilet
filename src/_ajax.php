@@ -12,29 +12,29 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "last"');
         $lastCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
-        echo "lastCleanTime =" . $lastCleanTime;
+        // echo "lastCleanTime =" . $lastCleanTime;
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "next"');
         $nextCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
 
         $lastClean = DateTime::createFromFormat('Y-m-d H:i:s', substr($lastCleanTime, 0, 19));
-        echo "lastClean =";
-        echo $lastClean->format('Y-m-d H:i:s');
-        echo "  ";
+        // echo "lastClean =";
+        // echo $lastClean->format('Y-m-d H:i:s');
+        // echo "  ";
 
         $nextClean = DateTime::createFromFormat('Y-m-d H:i:s', substr($nextCleanTime, 0, 19));
-        echo "nextClean =";
-        echo $nextClean->format('Y-m-d H:i:s');
-        echo "  ";
+        // echo "nextClean =";
+        // echo $nextClean->format('Y-m-d H:i:s');
+        // echo "  ";
 
         $now = new DateTime();
-        echo "now =";
-        echo $now->format('Y-m-d H:i:s');
-        echo "  ";
+        // echo "now =";
+        // echo $now->format('Y-m-d H:i:s');
+        // echo "  ";
 
         //現在時刻がシステムの次回掃除時間を超えている場合
         if ($now > $nextClean) {
-            echo "now > nextClean";
+            // echo "now > nextClean";
             //前回掃除時間を次回掃除時間で更新する。
             $stmt = $pdo->prepare('UPDATE cleans SET datetime = :datetime WHERE kind ="last"');
             $stmt->bindParam(':datetime', $nextCleanTime, PDO::PARAM_STR);
@@ -47,37 +47,37 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
             $stmt->execute();
 
         } else {
-            echo "now < nextClean";
+            // echo "now < nextClean";
         }
 
         //ユーザー画面に掃除を表示するか、しないかフラグ
         $haveToClean = "false";
 
-        //ユーザー画面に１回でも清掃画面が表示されたことがある場合
-        if (!empty($_COOKIE["cleaningdatetime"])) {
-            $userCleanDateTime = $_COOKIE["cleaningdatetime"];
-            $userCleanDateTime = DateTime::createFromFormat( 'Y-m-d H:i:s', $userCleanDateTime );
+        //ユーザーが2度目以降の訪問の場合
+        if (!empty($_COOKIE["LastAccessTime"])) {
+            $LastAccessTime = $_COOKIE["LastAccessTime"];
+            $LastAccessTime = DateTime::createFromFormat( 'Y-m-d H:i:s', $LastAccessTime );
 
-            echo " beforeCleanDateTime=" . $userCleanDateTime->format('Y-m-d H:i:s');
+            // echo " LastAccessTime=" . $LastAccessTime->format('Y-m-d H:i:s');
             
-            //前回ユーザー掃除日時より、最新システム掃除日時のほうが後　かつ
+            //前回ユーザーアクセス日時より、最新システム掃除日時のほうが後　かつ
             //最新システム掃除時間より、今のほうが後　の場合
-            echo "userCleanDateTime <  lastClean"; var_dump( $userCleanDateTime <  $lastClean );
-            echo "lastClean < now"; var_dump( $lastClean < $now );
+            // echo "userCleanDateTime <  lastClean"; var_dump( $LastAccessTime <  $lastClean );
+            // echo "lastClean < now"; var_dump( $lastClean < $now );
 
-            if( ( $userCleanDateTime <  $lastClean ) && ( $lastClean < $now ) ){
+            if( ( $LastAccessTime <  $lastClean ) && ( $lastClean < $now ) ){
                //ユーザー画面で清掃を実施する 
                $haveToClean = "true";
-               echo "haveToClean = true";
+            //    echo "haveToClean = true";
             }
             else{
-                echo "haveToClean = false"; 
+                // echo "haveToClean = false"; 
             }
-        //ユーザー画面に１回も清掃画面が表示されてない場合
+         //ユーザーがはじめて訪問した場合
         } else {
             //ユーザー画面で清掃を実施する 
             $haveToClean = "true";
-            echo "haveToClean = true";
+            // echo "haveToClean = true";
         }
 
     } catch (PDOException $e) {
@@ -90,18 +90,12 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
     // 接続を閉じる
     $pdo = null;
 
-    // //ユーザーが１回でも清掃したことがある場合
-    // if (!empty($_COOKIE["cleaningdatetime"])) {
-    //     $beforeCleanDateTime = $_COOKIE["cleaningdatetime"];
-    //     echo $beforeCleanDateTime;
-    //     //ユーザーが未清掃の場合
-    // } else {
-    //     echo "";
-    // }
-
+    //アクセス日時を記録する
     $now = new DateTime();
-    setcookie("cleaningdatetime", $now->format('Y-m-d H:i:s'), time() + 24 * 3600 * 365); //現在時刻を1年保存する
-    //setcookie("cleaningdatetime", time(), time() -1 ); //クッキーを削除する(テスト用コード)
+    setcookie("LastAccessTime", $now->format('Y-m-d H:i:s'), time() + 24 * 3600 * 365); //現在時刻を1年保存する
+    
+    //ユーザー画面で清掃が必要かを返す(true/false)
+    echo $haveToClean;
 
 } else {
     $contents = $_GET['contents'];

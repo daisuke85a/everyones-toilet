@@ -8,12 +8,12 @@ function aTagClickChangeValid(valid) {
   var list = document.getElementsByTagName("a");
 
   if (valid == true) {
-    console.log("true");
+    console.log("aTagClickChangeValid true");
     for (var i = 0, len = list.length; i < len; i++) {
       list.item(i).removeEventListener("click", invalidEvent);
     }
   } else {
-    console.log("false");
+    console.log("aTagClickChangeValid false");
     for (var i = 0, len = list.length; i < len; i++) {
       //aタグ要素のclickをすべて無効化する
       list.item(i).addEventListener("click", invalidEvent);
