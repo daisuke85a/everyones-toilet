@@ -11,6 +11,7 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "last"');
         $lastCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
+        echo "lastCleanTime =" . $lastCleanTime;
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "next"');
         $nextCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
@@ -30,12 +31,27 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
         echo $now->format('Y-m-d h:i:s');
         echo "  ";
 
+        //現在時刻がシステムの次回掃除時間を超えている場合
         if( $now > $nextClean ){
             echo "now > nextClean";
+            //前回掃除時間を次回掃除時間で更新する。
+            $stmt = $pdo->prepare('UPDATE cleans SET datetime = :datetime WHERE kind ="last"');
+            $stmt->bindParam(':datetime', $nextCleanTime, PDO::PARAM_STR);              
+            $stmt->execute();
+
+            //次回掃除時間を１週間後に設定する
+            $nextClean->add(new DateInterval('P7D'));
+            $stmt = $pdo->prepare('UPDATE cleans SET datetime = :datetime WHERE kind ="next"');
+            $stmt->bindParam(':datetime', $nextClean->format('Y-m-d h:i:s'), PDO::PARAM_STR);              
+            $stmt->execute();
+
+            $haveToClean = "true";
         }
         else{
             echo "now < nextClean";
+            
         }
+
 
 
 
