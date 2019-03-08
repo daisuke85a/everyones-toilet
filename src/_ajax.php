@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/config.php';
+date_default_timezone_set('Asia/Tokyo');
 
 if ($_GET['request'] === 'confirmCleaningWithAjax') {
 
@@ -10,29 +11,33 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "last"');
         $lastCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
-        // echo $lastCleanTime;
-        // echo substr($lastCleanTime,0,19);
-        // echo "  ";
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "next"');
         $nextCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
 
         $lastClean = DateTime::createFromFormat('Y-m-d h:i:s',substr($lastCleanTime,0,19));
-        echo "lastClean";
+        echo "lastClean =";
         echo $lastClean->format('Y-m-d h:i:s');
         echo "  ";
 
-        date_default_timezone_set('Asia/Tokyo');
+        $nextClean = DateTime::createFromFormat('Y-m-d h:i:s',substr($nextCleanTime,0,19));
+        echo "nextClean =";
+        echo $nextClean->format('Y-m-d h:i:s');
+        echo "  ";
+
         $now = new DateTime();
-        echo "now";
+        echo "now =";
         echo $now->format('Y-m-d h:i:s');
         echo "  ";
 
+        if( $now > $nextClean ){
+            echo "now > nextClean";
+        }
+        else{
+            echo "now < nextClean";
+        }
 
 
-        
-        // echo $datetime;
-        // echo "  ";
 
     } catch (PDOException $e) {
         $str = $e->getMessage();
