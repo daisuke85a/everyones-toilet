@@ -1,3 +1,20 @@
+<?php
+require_once __DIR__ . '/config.php';
+
+//トップページを経由せずに直接アクセスした場合は
+if (SERVER_PATH !== $_SERVER['HTTP_REFERER']) {
+    // トップページへリダイレクトする
+    $url = SERVER_PATH;
+    header('Location: ' . $url, true, 302);
+
+    // すべての出力を終了
+    exit;
+}
+else{
+  // echo "OK";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
