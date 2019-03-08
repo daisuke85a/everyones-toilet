@@ -27,12 +27,7 @@ function confirmCleaningWithAjax() {
     if (xhr.readyState === 4) {
       //通信が完了した時
       if (xhr.status === 200) {
-        if (xhr.responseText != "") {
-          console.log(xhr.responseText);
-        }
-        else{
-          console.log("クッキーが未設定です");
-        }
+        console.log("掃除アニメーション表示する？= " + xhr.responseText);
       } else {
         //通信が失敗した時
       }
