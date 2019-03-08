@@ -11,15 +11,25 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "last"');
         $lastCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
         // echo $lastCleanTime;
-        echo substr($lastCleanTime,0,19);
-        echo "  ";
+        // echo substr($lastCleanTime,0,19);
+        // echo "  ";
 
         $stmt = $pdo->query('SELECT * from cleans WHERE kind = "next"');
         $nextCleanTime = $stmt->fetch(PDO::FETCH_ASSOC)["datetime"];
 
         $lastClean = DateTime::createFromFormat('Y-m-d h:i:s',substr($lastCleanTime,0,19));
-        echo $lastClean->format('Y-m-d');
+        echo "lastClean";
+        echo $lastClean->format('Y-m-d h:i:s');
         echo "  ";
+
+        date_default_timezone_set('Asia/Tokyo');
+        $now = new DateTime();
+        echo "now";
+        echo $now->format('Y-m-d h:i:s');
+        echo "  ";
+
+
+
         
         // echo $datetime;
         // echo "  ";
