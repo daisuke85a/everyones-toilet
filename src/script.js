@@ -72,12 +72,22 @@ function confirmCleaningWithAjax() {
       if (xhr.status === 200) {
 
         console.log("掃除アニメーション表示する？= " + xhr.responseText);
-        //jQuery使わない場合
-        var el = document.querySelector('.obachan01-active');
-        el.addEventListener('animationend', function () {
-          // animation終了時の処理
+
+        if (xhr.responseText == "true") {
+          var obachan = document.createElement('img');
+          obachan.className = "obachan01-active";
+          obachan.src = "images/obachan01.gif";
+          var list = document.getElementsByTagName("main");
+          list[0].appendChild(obachan);
+
+          var el = document.querySelector('.obachan01-active');
+          el.addEventListener('animationend', function () {
+            // animation終了時の処理
+            aTagClickChangeValid(true);
+          });
+        } else {
           aTagClickChangeValid(true);
-        });
+        }
 
       } else {
         //通信が失敗した時
