@@ -79,7 +79,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     onclick="window.open(this.href, 'tweetwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;">
                     トイレ報告
                 </a>
-                <a href="index.html">トイレから出る</a>
+                <a href="./">トイレから出る</a>
             </div>
         </section>
     </main>
