@@ -40,8 +40,8 @@ if ($_GET['request'] === 'confirmCleaningWithAjax') {
             $stmt->bindParam(':datetime', $nextCleanTime, PDO::PARAM_STR);
             $stmt->execute();
 
-            //次回掃除時間を１週間後に設定する
-            $nextClean->add(new DateInterval('P7D'));
+            //次回掃除時間を1ヶ月後に設定する
+            $nextClean->add(new DateInterval('P31D'));
             $stmt = $pdo->prepare('UPDATE cleans SET datetime = :datetime WHERE kind ="next"');
             $nextCleanStr = $nextClean->format('Y-m-d H:i:s');
             $stmt->bindParam(':datetime', $nextCleanStr, PDO::PARAM_STR);
